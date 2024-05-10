@@ -1,0 +1,54 @@
+body {
+    background-color: #1B2838;
+    font: Arial;
+}
+
+#wrapper {
+    background-color: #1B2838;
+}
+
+#header{
+    background-color: #171a21;
+    color: white;
+}
+
+#menu{
+    background-color: #17456e;
+}
+
+#main {
+    background-color: #1B2838;
+    color: white;
+}
+
+#footer{
+    background-color: #171a21;
+}
+
+html,
+body,
+.intro {
+  height: 100%;
+  font: Arial;
+}
+
+table td,
+table th {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  font-size: 11px;
+}
+
+.card {
+  border-radius: .5rem;
+}
+
+.table-scroll {
+  border-radius: .5rem;
+}
+
+thead {
+  top: 0;
+  position: sticky;
+}

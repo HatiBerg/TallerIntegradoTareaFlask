@@ -1,15 +1,30 @@
-from flask import Flask, render_template
+from flask import Flask, jsonify, render_template
+import json
+import random
 
 app = Flask(__name__)
 
-@app.route("")
+with open('C:/Users/resid/GitHub/TallerIntegradoTareaFlask/static/vgsales.json', 'r') as j:
+  data = json.load(j)
+
+def random_platform():
+  platform = set(game['platform'] for game in data)
+  rd_platform = random.choice(list(platform))
+  return rd_platform
+
+def random_genre():
+  genres = set(game['genre'] for game in data)
+  rd_genre = random.choice(list(genres))
+  return rd_genre
+
+@app.route("/")
 def index():
-    return render_template("index.html")
+  return render_template("index.html", data=data)
 
-# @app.route("/<string:slug>/")
-# def def1(slug):
-#     return render_template("template1.html", slug_title=slug)
+@app.route("/platform/<string:slug>/")
+def plataformas(slug):
+    return render_template("plataformas.html", data=data, random_platform=random_platform(), slug_platform=slug)
 
-# @app.route("/<string:slug>/")
-# def def2(slug):
-#     return render_template("template2.html", slug_title=slug)
+@app.route("/genre/<string:slug>/")
+def generos(slug):
+    return render_template("generos.html", data=data, random_genre=random_genre(), slug_genre=slug)

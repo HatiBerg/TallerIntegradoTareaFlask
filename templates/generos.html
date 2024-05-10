@@ -1,28 +1,28 @@
 {% extends "base_template.html" %}
-{% block title %}Taller Integrado 2024: Tabla de Venta de videojuegos{% endblock %}
+{% block title %}Taller Integrado 2024: Género de Videojuegos: {{random_genre}}{% endblock %}
 {% block headContent %}
 
 {% endblock %}
 {% block header %}
-<div class="container-fluid fs-1">Taller Integrado 2024: Tabla de Venta de videojuegos</div>
+<div class="container-fluid fs-1">Taller Integrado 2024: Género de Videojuegos: {{random_genre}}</div>
 {% endblock %}
 
 {% block menu %}
 <li class="nav-item">
-    <a class="nav-link active" aria-current="page" href="http://127.0.0.1:5000/">Inicio</a>
+    <a class="nav-link" href="http://127.0.0.1:5000/">Inicio</a>
 </li>
 <li class="nav-item">
-    <a class="nav-link" href="http://127.0.0.1:5000/platform/">Plataformas</a>
+    <a class="nav-link" href="http://127.0.0.1:5000/platform/{{random_platform}}">Plataformas</a>
 </li>
 <li class="nav-item">
-    <a class="nav-link" href="http://127.0.0.1:5000/genre/">Géneros</a>
+    <a class="nav-link active" aria-current="page" href="http://127.0.0.1:5000/genre/{{random_genre}}">Géneros</a>
 </li>
 {% endblock %}
 
 {% block main %}
 <section class="intro">
     <div class="bg-image h-100">
-        <div class="mask d-flex align-items-center h-100">
+        <div class="mask d-flex align-items-left h-100">
         <div class="container">
             <div class="row justify-content-center">
             <div class="col-12">
@@ -35,7 +35,6 @@
                             <th scope="col">Nombre</th>
                             <th scope="col">Plataforma</th>
                             <th scope="col">Año</th>
-                            <th scope="col">Género</th>
                             <th scope="col">Editor</th>
                             <th scope="col">Ventas NA</th>
                             <th scope="col">Ventas EU</th>
@@ -46,11 +45,11 @@
                         </thead>
                         <tbody>
                         {% for game in data %}
+                        {% if game.genre == random_genre %}
                         <tr>
                             <td>{{ game.name }}</td>
                             <td>{{ game.platform }}</td>
                             <td>{{ game.year }}</td>
-                            <td>{{ game.genre }}</td>
                             <td>{{ game.publisher }}</td>
                             <td>{{ game.na_sales }}</td>
                             <td>{{ game.eu_sales }}</td>
@@ -58,6 +57,7 @@
                             <td>{{ game.others_sales }}</td>
                             <td>{{ game.global_sales }}</td>
                         </tr>
+                        {% endif %}
                         {% endfor %}
                         </tbody>
                     </table>
